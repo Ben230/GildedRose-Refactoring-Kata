@@ -51,4 +51,10 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toEqual(50);
   });
 
+  it('quality never depletes for Sulfuras', function() {
+    const gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", 1, 30) ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toEqual(30);
+  });
+
 });
