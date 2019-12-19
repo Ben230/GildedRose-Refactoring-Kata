@@ -7,18 +7,21 @@ class Item {
 }
 
 class Shop {
+
   constructor(items=[]){
     this.items = items;
   }
+
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
+      // refactor to jsut include backstage pass
       if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
         if (this.items[i].quality > 0) {
           if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
             this.items[i].quality = this.items[i].quality - 1;
           }
         }
-      } else {
+      } else { // if aged bri *or* baxckstage passes
         if (this.items[i].quality < 50) {
           this.items[i].quality = this.items[i].quality + 1;
           if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
@@ -35,6 +38,7 @@ class Shop {
           }
         }
       }
+      // refactor to just include Sulfuras
       if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
         this.items[i].sellIn = this.items[i].sellIn - 1;
       }
