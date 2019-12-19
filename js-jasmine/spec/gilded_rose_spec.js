@@ -52,9 +52,31 @@ describe("Gilded Rose", function() {
   });
 
   it('quality never depletes for Sulfuras', function() {
-    const gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", 1, 30) ]);
+    const gildedRose = new Shop([ new Item("Sulfuras, Hand of Ragnaros", 1, 5) ]);
     const items = gildedRose.updateQuality();
-    expect(items[0].quality).toEqual(30);
+    expect(items[0].quality).toEqual(5);
+  });
+
+  describe('backstage pass', function() {
+    it('quality increases by 2 for 10 days until sellIn day', function() {
+      const gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 10, 5) ]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(7);
+    });
+
+    it('quality increases by 3 for 5 days until sellIn day', function() {
+      const gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 5, 5) ]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(8);
+    });
+
+    it('quality is 0 at sellIn day', function() {
+      const gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", 0, 5) ]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(0);
+    });
+
+
   });
 
 });
