@@ -2,10 +2,6 @@ var {Shop, Item} = require('../src/gilded_rose.js');
 
 describe("Gilded Rose", function() {
 
-  // beforeEach(function(){
-  //
-  // })
-
   it("has correct name", function() {
     const gildedRose = new Shop([ new Item("frog", 0, 0) ]);
     const items = gildedRose.updateQuality();
@@ -75,8 +71,6 @@ describe("Gilded Rose", function() {
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toEqual(0);
     });
-
-
   });
 
 });
